@@ -66,13 +66,13 @@ Voir la procédure détaillée dans [`docs/restauration.md`](docs/restauration.m
 ## Captures d'écran
 
 ### Odoo accessible via erp.local (reverse proxy Nginx)
-![Odoo via erp.local](docs/screenshots/01-erp-local-odoo.png)
+![Odoo via erp.local](docs/screenshots/01-erp-local-odoo.PNG)
 
 ### Module Sales installé
-![Module Sales installé](docs/screenshots/02-sales-module-avant-down.png)
+![Module Sales installé](docs/screenshots/02-sales-module-avant-down.png.PNG)
 
 ### Module Sales toujours présent après redémarrage (persistance des données)
-![Persistance après down/up](docs/screenshots/03-sales-module-apres-up.png)
+![Persistance après down/up](docs/screenshots/03-sales-module-apres-up.png.PNG)
 
 ### Scénario de crash & restauration
 
