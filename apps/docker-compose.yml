@@ -1,0 +1,44 @@
+services:
+  db:
+    image: postgres:15
+    env_file:
+      - .env
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - internal
+
+  odoo:
+    image: odoo:17
+    depends_on:
+      - db
+    env_file:
+      - .env
+    environment:
+      HOST: ${ODOO_DB_HOST}
+      USER: ${ODOO_DB_USER}
+      PASSWORD: ${ODOO_DB_PASSWORD}
+    ports:
+      - "8069:8069"
+    volumes:
+      - odoo-filestore:/var/lib/odoo
+    networks:
+      - internal
+
+  nginx:
+    image: nginx:alpine
+    depends_on:
+      - odoo
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/odoo.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - internal
+
+networks:
+  internal:
+
+volumes:
+  postgres-data:
+  odoo-filestore:
