@@ -105,7 +105,7 @@ Cette commande rejoue toutes les instructions SQL du dump (`CREATE TABLE`,
 docker cp /backup/restore-temp/filestore_YYYYMMDD_HHMMSS.tar.gz apps-odoo-1:/tmp/filestore.tar.gz
 docker exec -it apps-odoo-1 sh -c "cd / && tar -xzf /tmp/filestore.tar.gz"
 docker exec -it apps-odoo-1 ls -la /var/lib/odoo/filestore
-docker exec -it apps-odoo-1 rm /tmp/filestore.tar.gz
+
 ```
 
 ![Restauration du filestore](screenshots/crash-scenario/08-restore-filestore.PNG)
