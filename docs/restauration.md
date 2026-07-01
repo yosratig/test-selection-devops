@@ -78,7 +78,7 @@ docker compose ps
 
 Les 3 services (`db`, `odoo`, `nginx`) doivent être en `Up`, mais sans aucune donnée.
 
-![Conteneurs relancés](screenshots/crash-scenario/05-conteneurs-relances.png)
+![Conteneurs relancés](screenshots/crash-scenario/05-conteneurs-relances.PNG)
 
 ---
 
@@ -92,7 +92,7 @@ docker exec -it apps-db-1 createdb -U odoo odoo
 docker exec -it apps-db-1 psql -U odoo -l
 ```
 
-![Création de la base](screenshots/crash-scenario/06-createdb.png)
+![Création de la base](screenshots/crash-scenario/06-createdb.PNG)
 
 ---
 
@@ -105,7 +105,7 @@ cat /backup/restore-temp/db_YYYYMMDD_HHMMSS.sql | docker exec -i apps-db-1 psql 
 Cette commande rejoue toutes les instructions SQL du dump (`CREATE TABLE`,
 `INSERT INTO`, etc.) directement dans la base `odoo` fraîchement créée.
 
-![Restauration du dump SQL](screenshots/crash-scenario/07-restore-sql.png)
+![Restauration du dump SQL](screenshots/crash-scenario/07-restore-sql.PNG)
 
 ---
 
@@ -118,7 +118,7 @@ docker exec -it apps-odoo-1 ls -la /var/lib/odoo/filestore
 docker exec -it apps-odoo-1 rm /tmp/filestore.tar.gz
 ```
 
-![Restauration du filestore](screenshots/crash-scenario/08-restore-filestore.png)
+![Restauration du filestore](screenshots/crash-scenario/08-restore-filestore.PNG)
 
 ---
 
@@ -129,7 +129,7 @@ docker exec -it apps-odoo-1 rm /tmp/filestore.tar.gz
 - Vérifier que le module Sales est installé et que les données (clients, produits,
   devis) sont présentes
 
-![Odoo fonctionnel après restauration](screenshots/crash-scenario/09-final-verification.png)
+![Odoo fonctionnel après restauration](screenshots/crash-scenario/09-final-verification.PNG)
 
 ---
 
