@@ -16,11 +16,15 @@ docker compose up -d
 ```
 
 Ajouter ensuite l'entrée suivante dans `/etc/hosts` :
+```
 127.0.0.1 erp.local
+```
 
 Accéder à Odoo via : **http://erp.local**
 
 ## Structure du projet
+
+```
 test-selection-devops/
 ├── apps/
 │   ├── docker-compose.yml   # Stack Odoo + PostgreSQL + Nginx
@@ -29,9 +33,10 @@ test-selection-devops/
 │   └── nginx/odoo.conf      # Config du reverse proxy
 ├── docs/
 │   ├── restauration.md      # Runbook de restauration après crash
-│   └── journal-ia.md        # Journal d'utilisation de l'IA
+│   ├── journal-ia.md        # Journal d'utilisation de l'IA
+│   └── screenshots/         # Captures d'écran des livrables
 └── README.md
-
+```
 
 ## Sauvegarde
 
@@ -54,6 +59,23 @@ crontab -l   # pour vérifier l'entrée
 Voir la procédure détaillée dans [`docs/restauration.md`](docs/restauration.md).
 
 ## Sécurité
+
 - Aucun secret n'est commité dans ce dépôt (`.env` est ignoré, voir `.gitignore`).
 - Utiliser `.env.example` comme modèle pour créer votre propre `.env`.
 
+## Captures d'écran
+
+### Odoo accessible via erp.local (reverse proxy Nginx)
+![Odoo via erp.local](docs/screenshots/01-erp-local-odoo.png)
+
+### Module Sales installé
+![Module Sales installé](docs/screenshots/02-sales-module-avant-down.png)
+
+### Module Sales toujours présent après redémarrage (persistance des données)
+![Persistance après down/up](docs/screenshots/03-sales-module-apres-up.png)
+
+### Scénario de crash & restauration
+
+Le détail complet du scénario (backup, destruction des volumes, restauration
+de la base de données et du filestore), avec une capture pour chaque étape,
+est documenté dans [`docs/restauration.md`](docs/restauration.md).
