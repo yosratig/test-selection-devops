@@ -123,11 +123,6 @@ docker exec -it apps-odoo-1 ls -la /var/lib/odoo/filestore
 
 ---
 
-## Nettoyage
-
-```bash
-rm -rf /backup/restore-temp
-```
 
 ## Notes
 
