@@ -52,7 +52,7 @@ docker compose down -v
 sont perdues. C'est le but de l'exercice : prouver qu'on peut tout reconstruire
 depuis un backup.
 
-![Crash simulé](screenshots/crash-scenario/03-crash-down-v.PNG)
+![Crash simulé](screenshots/crash-scenario/03-crash-down-v.png)
 
 ---
 
@@ -65,11 +65,11 @@ docker volume ls
 Les volumes `apps_postgres-data` et `apps_odoo-filestore` ne doivent plus apparaître
 dans la liste.
 
-![Volumes vides après crash](screenshots/crash-scenario/04-volumes-vides.PNG)
+![Volumes vides après crash](screenshots/crash-scenario/04-volumes-vides.png.PNG)
 
 ---
 
-### 5. Redémarrer la stack (conteneurs vides)
+### 5. Redémarrer la stack et recréer la base de données
 
 ```bash
 docker compose up -d
@@ -77,26 +77,16 @@ docker compose ps
 ```
 
 Les 3 services (`db`, `odoo`, `nginx`) doivent être en `Up`, mais sans aucune donnée.
-
-![Conteneurs relancés](screenshots/crash-scenario/05-conteneurs-relances.PNG)
-
----
-
-### 6. Créer la base de données PostgreSQL
-
 Le volume PostgreSQL étant vide, la base `odoo` n'existe plus — il faut la recréer
-avant de pouvoir y restaurer le dump.
+avant de pouvoir y restaurer le dump :
 
 ```bash
 docker exec -it apps-db-1 createdb -U odoo odoo
-docker exec -it apps-db-1 psql -U odoo -l
 ```
-
-![Création de la base](screenshots/crash-scenario/06-createdb.PNG)
 
 ---
 
-### 7. Restaurer le dump SQL
+### 6. Restaurer le dump SQL
 
 ```bash
 cat /backup/restore-temp/db_YYYYMMDD_HHMMSS.sql | docker exec -i apps-db-1 psql -U odoo -d odoo
@@ -109,7 +99,7 @@ Cette commande rejoue toutes les instructions SQL du dump (`CREATE TABLE`,
 
 ---
 
-### 8. Restaurer le filestore
+### 7. Restaurer le filestore
 
 ```bash
 docker cp /backup/restore-temp/filestore_YYYYMMDD_HHMMSS.tar.gz apps-odoo-1:/tmp/filestore.tar.gz
@@ -122,7 +112,7 @@ docker exec -it apps-odoo-1 rm /tmp/filestore.tar.gz
 
 ---
 
-### 9. Vérification finale
+### 8. Vérification finale
 
 - Aller sur `http://erp.local`
 - Se connecter à Odoo
