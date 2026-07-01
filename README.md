@@ -60,7 +60,6 @@ Voir la procédure détaillée dans [`docs/restauration.md`](docs/restauration.m
 
 ## Sécurité
 
-- Aucun secret n'est commité dans ce dépôt (`.env` est ignoré, voir `.gitignore`).
 - Utiliser `.env.example` comme modèle pour créer votre propre `.env`.
 
 ## Captures d'écran
