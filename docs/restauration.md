@@ -38,7 +38,7 @@ ls /backup/restore-temp
 
 Cela génère deux fichiers : `db_YYYYMMDD_HHMMSS.sql` et `filestore_YYYYMMDD_HHMMSS.tar.gz`.
 
-![Extraction de l'archive](screenshots/crash-scenario/02-extraction-archive.png)
+![Extraction de l'archive](screenshots/crash-scenario/02-extraction-archive.PNG)
 
 ---
 
@@ -52,7 +52,7 @@ docker compose down -v
 sont perdues. C'est le but de l'exercice : prouver qu'on peut tout reconstruire
 depuis un backup.
 
-![Crash simulé](screenshots/crash-scenario/03-crash-down-v.png)
+![Crash simulé](screenshots/crash-scenario/03-crash-down-v.PNG)
 
 ---
 
@@ -65,7 +65,7 @@ docker volume ls
 Les volumes `apps_postgres-data` et `apps_odoo-filestore` ne doivent plus apparaître
 dans la liste.
 
-![Volumes vides après crash](screenshots/crash-scenario/04-volumes-vides.png)
+![Volumes vides après crash](screenshots/crash-scenario/04-volumes-vides.PNG)
 
 ---
 
